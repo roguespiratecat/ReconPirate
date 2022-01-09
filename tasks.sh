@@ -27,7 +27,7 @@ amassEnumShow () {
 }
 
 massScan () {
-	./dnmasscan ./httprobe.txt dns.log -p80,443 -oG massScan.log
+	./dnmasscan amass_$1.txt dns.log -p80,443 -oG massScan.log
 }
 
 screenshotSites () {
@@ -47,7 +47,7 @@ options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum
 select opt in "${options[@]}"
 do
     case $opt in
-        "--Https Probe")
+        "--Https-Probe")
             echo "[*] Probing Http Servers "
             httProbe $domain
             cat ./httprobe.txt 
