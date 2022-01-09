@@ -38,8 +38,7 @@ echo ""
 amass enum -active -d $1  -brute -w  $wordList  -dir $outdir/amass_$1_db -o $outdir/amass_$1.txt
 echo ""
 echo "[*] Finalizing Recon Setup"
-awk '{sub(/DOMAIN/,"test.ie")}1' tasks.sh > $outdir/tasks.sh
+awk '{sub(/DOMAIN/,"$1")}1' tasks.sh > $outdir/tasks.sh
 chmod 777 $outdir/tasks.sh
 cp -r scripts/* $outdir
 echo "[*] Recon Setup Finished"
-
