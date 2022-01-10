@@ -22,6 +22,10 @@ amassEnumList () {
 	amass db -dir amass_$1_db -list
 }
 
+startSimpleServer () {
+   python3 -m http.server 9000
+}
+
 amassEnumShow () {
 	amass db -dir amass_$1_db -show 
 }
@@ -43,7 +47,7 @@ generateGithubDorks ()  {
 # Bash Menu Script Example
 
 PS3='Recon Pirate Available Tasks: '
-options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Quit")
+options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -68,6 +72,7 @@ do
             ;;
         "--Amass-Enum-Show")
 	        amassEnumShow $domain
+		exit 0
 	        ;;
         "--Mass-Scan")
 	         echo "[*] Starting Mass Scan"
@@ -79,6 +84,7 @@ do
 	        ;;
         "--Web-Screen-Shots")
 	        eyewitness -f httprobe.txt  -d screenshots
+		exit 0
 	        ;;
         "--Git-Dorks")
 			echo "[*] Enter Domain Name "
@@ -86,7 +92,11 @@ do
 	        generateGithubDorks $target
 	        cat /dorking/$target-githubDorks.txt
 	        exit 0
-	        ;;    
+	        ;;
+	 "--Start-Simple-Server")
+		 startSimpleServer 
+		 exit 0
+	        ;;
         "--Quit")
             break
             ;;
