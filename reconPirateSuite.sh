@@ -30,9 +30,14 @@ echo "[*] Generating Github Dorks"
 echo ""
 
 ./scripts/githubDorks.sh $1 > $outdir/dorking/$1_githubDorks.txt
-
 cat $outdir/dorking/$1_githubDorks.txt
+
 echo ""
+echo "[*] Generating Google Dorgs for Domain $1"
+echo ""
+python3 parseDorks.py > tmp.txt
+awk '{sub(/REPLACE_ME/,"'$1'")}1' tmp.txt > $outdir/dorking/$1_googleDorks.txt
+rm tmp.txt
 echo "[*] Starting Amass Enumeration That may take a while"
 echo ""
 amass enum -active -d $1  -brute -w  $wordList  -dir $outdir/amass_$1_db -o $outdir/amass_$1.txt
