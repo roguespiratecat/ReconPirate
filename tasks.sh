@@ -14,7 +14,7 @@ siteCrawl () {
 	readarray -t array < ./amass_$1.txt
 	for e in "${array[@]}"
 	do
-		./reconPirateDomainScrape.sh "$e" > ./content-discovery/"$i".txt
+		./reconPirateDomainScrape.sh "$e" >> ./content-discovery/"$1".txt
 	done
 }
 
