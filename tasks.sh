@@ -14,7 +14,7 @@ siteCrawl () {
 	readarray -t array < ./amass_$1.txt
 	for e in "${array[@]}"
 	do
-		./reconPirateDomainScrape.sh "$e" > ./content-discovery/"$e".txt
+		./reconPirateDomainScrape.sh "$e" > ./content-discovery/"$i".txt
 	done
 }
 
@@ -38,6 +38,10 @@ screenshotSites () {
   echo "[*] Not Implemented"
 }
 
+runDorkTest () {
+   ./reconPirateDegoogle.sh $1 > degoogle.txt  
+}
+
 generateGithubDorks ()  {
 	  ./githubDorks.sh $1 > ./dorking/$1-githubDorks.txt
 }
@@ -47,7 +51,7 @@ generateGithubDorks ()  {
 # Bash Menu Script Example
 
 PS3='Recon Pirate Available Tasks: '
-options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Quit")
+options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Google-Dork-Test" "--Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -83,7 +87,7 @@ do
              exit 0
 	        ;;
         "--Web-Screen-Shots")
-	        eyewitness -f httprobe.txt  -d screenshots
+	        eyewitness -f amass_$domain.txt  -d screenshots
 		exit 0
 	        ;;
         "--Git-Dorks")
@@ -97,6 +101,10 @@ do
 		 startSimpleServer 
 		 exit 0
 	        ;;
+	"--Google-Dork-Test")
+		runDorkTest $domain
+		exit 0
+		;;
         "--Quit")
             break
             ;;
