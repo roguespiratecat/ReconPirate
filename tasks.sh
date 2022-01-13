@@ -42,7 +42,12 @@ screenshotSites () {
 }
 
 runDorkTest () {
-   ./reconPirateDegoogle.sh $1 > degoogle.txt  
+   echo "[*] Starting Initial Content Discovery on Discovered Domains"
+   readarray -t array < ./$1_googleDorks.txt
+   for e in "${array[@]}"
+   do
+	python3 degoogle.py "$e" > degoogle.txt
+   done
 }
 
 generateGithubDorks ()  {
