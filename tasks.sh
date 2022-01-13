@@ -16,6 +16,9 @@ siteCrawl () {
 	do
 		./reconPirateDomainScrape.sh "$e" >> ./content-discovery/"$1".txt
 	done
+
+	rm -r *.js
+	rm -r *js*
 }
 
 amassEnumList () {
