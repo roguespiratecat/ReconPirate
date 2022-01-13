@@ -42,7 +42,7 @@ screenshotSites () {
 }
 
 runDorkTest () {
-   echo "[*] Starting Initial Content Discovery on Discovered Domains"
+   echo "[*] Starting Google Dork Testing "
    readarray -t array < ./$1_googleDorks.txt
    for e in "${array[@]}"
    do
