@@ -48,6 +48,7 @@ runDorkTest () {
    do
 	python3 degoogle.py "$e" > degoogle.txt
    done
+   echo "[*] Finished Google Dork Testing results in $(pwd)/$1_googleDorks.txt"
 }
 
 generateGithubDorks ()  {
