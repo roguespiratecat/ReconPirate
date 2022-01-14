@@ -58,7 +58,7 @@ generateGithubDorks ()  {
 
 COLUMNS=12
 PS3=" Recon Pirate Available Tasks: "
-options=("--Https-Probe [*] (Probe amass enumerated Domains)" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Google-Dork-Test" "--Quit")
+options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discovery [!] (Start Simple Content Discovery)" "--Amass-Enum-List [!] Show All Ammass Enumerations" "--Amass-Enum-Show [!] (Show Amass Enumeration)" "--Mass-Scan [!] (Start Mass Scan)" "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)" "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)" "--Start-Simple-Server [!] (Start A Simple Web Browser)" "--Google-Dork-Test [!] (Test domain agains all Google Dorks)" "--Quit [!] (Exit App)")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -70,7 +70,7 @@ do
             echo "[*] Results in $(pwd)/httprobe.txt"
             exit 0
             ;;
-        "--Content-Discovery")
+        "--Content-Discovery [!] (Start Simple Content Discovery)")
              echo "[*] Crawling Domains"
              siteCrawl $domain
              echo "[*] Process Finished"
@@ -78,14 +78,14 @@ do
              ls content-discovery
              exit 0
             ;;
-        "--Amass-Enum-List")
+        "--Amass-Enum-List [!] (Show All Amass Enumerations)")
             amassEnumList $domain
             ;;
-        "--Amass-Enum-Show")
+        "--Amass-Enum-Show [!] (Show Amass Enumeration)")
 	        amassEnumShow $domain
 		exit 0
 	        ;;
-        "--Mass-Scan")
+        "--Mass-Scan [!] (Start Mass Scan)")
 	         echo "[*] Starting Mass Scan"
              massScan $domain
              echo "[*] Process Finished"
@@ -93,26 +93,26 @@ do
              cat massScan.log
              exit 0
 	        ;;
-        "--Web-Screen-Shots")
+        "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)")
 	        eyewitness -f amass_$domain.txt  -d screenshots
 		exit 0
 	        ;;
-        "--Git-Dorks")
+        "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)")
 			echo "[*] Enter Domain Name "
 			read target   
 	        generateGithubDorks $target
 	        cat /dorking/$target-githubDorks.txt
 	        exit 0
 	        ;;
-	 "--Start-Simple-Server")
+	 "--Start-Simple-Server [!] (Start A Simple Web Browser)")
 		 startSimpleServer 
 		 exit 0
 	        ;;
-	"--Google-Dork-Test")
+	"--Google-Dork-Test [!] (Test domain agains all Google Dorks)")
 		runDorkTest $domain
 		exit 0
 		;;
-        "--Quit")
+        "--Quit [!] (Exit App)")
             break
             ;;
         *) echo "invalid option $REPLY";;
