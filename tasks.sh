@@ -56,15 +56,13 @@ generateGithubDorks ()  {
 }
 
 
-#!/bin/bash
-# Bash Menu Script Example
-
-PS3='Recon Pirate Available Tasks: '
-options=("--Https-Probe" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Google-Dork-Test" "--Quit")
+COLUMNS=12
+PS3=" Recon Pirate Available Tasks: "
+options=("--Https-Probe [*] (Probe amass enumerated Domains)" "--Content-Discovery" "--Amass-Enum-List" "--Amass-Enum-Show" "--Mass-Scan" "--Web-Screen-Shots" "--Git-Dorks" "--Start-Simple-Server" "--Google-Dork-Test" "--Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "--Https-Probe")
+	    "--Https-Probe [*] (Probe amass enumerated Domains)")
             echo "[*] Probing Http Servers "
             httProbe $domain
             cat ./httprobe.txt 
