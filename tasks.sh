@@ -58,7 +58,7 @@ generateGithubDorks ()  {
 
 COLUMNS=12
 PS3=" Recon Pirate Available Tasks: "
-options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discovery [!] (Start Simple Content Discovery)" "--Amass-Enum-List [!] Show All Ammass Enumerations" "--Amass-Enum-Show [!] (Show Amass Enumeration)" "--Mass-Scan [!] (Start Mass Scan)" "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)" "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)" "--Start-Simple-Server [!] (Start A Simple Web Browser)" "--Google-Dork-Test [!] (Test domain agains all Google Dorks)" "--Quit [!] (Exit App)")
+options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discovery [!] (Start Simple Content Discovery)" "--Amass-Enum-List [!] Show All Ammass Enumerations" "--Amass-Enum-Show [!] (Show Amass Enumeration)" "--Mass-Scan [!] (Start Mass Scan)" "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)" "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)" "--Start-Simple-Server [!] (Start A Simple Web Browser)" "--Google-Dork-Test [!] (Test domain agains all Google Dorks)" "--Start-Recon-NG [!] (Starts Quick Recon-NG Console)" "--Quit [!] (Exit App)" )
 select opt in "${options[@]}"
 do
     case $opt in
@@ -111,6 +111,10 @@ do
 	"--Google-Dork-Test [!] (Test domain agains all Google Dorks)")
 		runDorkTest $domain
 		exit 0
+		;;
+	"--Start-Recon-NG [!] (Starts Quick Recon-NG Console)")
+	        recon-ng
+	        exit 0
 		;;
         "--Quit [!] (Exit App)")
             break
