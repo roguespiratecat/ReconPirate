@@ -123,7 +123,9 @@ do
 	"--nmap-inital [!] (Initial nmap scan)")	
 		echo "[*] Starting initial Nmap Scan"
 		ip=$(dig +short $domain)
-		nmap -sC -sV -oN nmap/$domain_nmapscan.txt
+		nmap -sC -sV -oN nmap/$domain_nmapscan.txt $ip
+		exit 0
+		;;
 
         "--Quit [!] (Exit App)")
             break
