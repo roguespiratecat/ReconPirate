@@ -29,6 +29,10 @@ startSimpleServer () {
    python3 -m http.server 9390
 }
 
+nmapInitial () {
+
+	nmap -sC -sV -oN nmap/$1_nmap.txt
+}
 amassEnumShow () {
 	amass db -dir amass_$1_db -show 
 }
@@ -58,7 +62,7 @@ generateGithubDorks ()  {
 
 COLUMNS=12
 PS3=" Recon Pirate Available Tasks: "
-options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discovery [!] (Start Simple Content Discovery)" "--Amass-Enum-List [!] Show All Ammass Enumerations" "--Amass-Enum-Show [!] (Show Amass Enumeration)" "--Mass-Scan [!] (Start Mass Scan)" "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)" "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)" "--Start-Simple-Server [!] (Start A Simple Web Browser)" "--Google-Dork-Test [!] (Test domain agains all Google Dorks)" "--Start-Recon-NG [!] (Starts Quick Recon-NG Console)" "--Quit [!] (Exit App)" )
+options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discovery [!] (Start Simple Content Discovery)" "--Amass-Enum-List [!] Show All Ammass Enumerations" "--Amass-Enum-Show [!] (Show Amass Enumeration)" "--Mass-Scan [!] (Start Mass Scan)" "--Web-Screen-Shots [!] (Screenshot Web Sites from Domain Lists)" "--Git-Dorks [!] (Generates List Of Github Dorks For provided Domain)" "--Start-Simple-Server [!] (Start A Simple Web Browser)" "--Google-Dork-Test [!] (Test domain agains all Google Dorks)" "--Start-Recon-NG [!] (Starts Quick Recon-NG Console)" "--nmap-inital [!] (Initial nmap scan)" "--Quit [!] (Exit App)" )
 select opt in "${options[@]}"
 do
     case $opt in
@@ -116,6 +120,11 @@ do
 	        recon-ng
 	        exit 0
 		;;
+	"--nmap-inital [!] (Initial nmap scan)")	
+		echo "[*] Starting initial Nmap Scan"
+		ip=$(dig +short $domain)
+		nmap -sC -sV -oN nmap/$domain_nmapscan.txt
+
         "--Quit [!] (Exit App)")
             break
             ;;

@@ -24,6 +24,7 @@ mkdir $outdir
 mkdir $outdir/content-discovery
 mkdir $outdir/screenshots
 mkdir $outdir/dorking
+mkdir $outdir/nmap
 
 echo ""
 echo "[*] Generating Github Dorks"
