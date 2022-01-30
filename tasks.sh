@@ -66,7 +66,7 @@ options=("--Https-Probe [!] (Probe amass enumerated Domains)" "--Content-Discove
 select opt in "${options[@]}"
 do
     case $opt in
-	    "--Https-Probe [*] (Probe amass enumerated Domains)")
+	    "--Https-Probe [!] (Probe amass enumerated Domains)")
             echo "[*] Probing Http Servers "
             httProbe $domain
             cat ./httprobe.txt 
