@@ -1,0 +1,6 @@
+Wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/SQL.txt -d “username=admin&password=FUZZ” -u <TARGET_URL>
+└
+arjun https://creativeireland.gov.ie --stable
+
+ gobuster -e -u http://192.168.0.155/ -w /usr/share/wordlists/dirb/common.txt
+uniscan -u http://192.168.1.202/ -qweds
